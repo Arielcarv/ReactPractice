@@ -81,7 +81,7 @@ function App() {
       <button onClick={resetGame}>{gameOver ? "Play Again" : "Reset Game"}</button>
       {!winner && <p>It's {turn}'s turn.</p>}
 
-      <div className="board">
+      <div className={`board ${gameOver ? "gameOver" : null}`}>
         {getSquares().map((_, index) => (
           <div
             key={index}

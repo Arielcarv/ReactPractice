@@ -18,9 +18,13 @@
 
 .board {
   display: flex;
-
   width: 18rem;
   flex-wrap: wrap;
+  opacity: 1;
+}
+
+.board.gameOver {
+  opacity: 0.5;
 }
 
 .cell {
