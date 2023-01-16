@@ -12,6 +12,10 @@
   color: #264653;
 }
 
+.container > h1 {
+  font-size: xx-large;
+}
+
 .board {
   display: flex;
 
@@ -22,12 +26,20 @@
 .cell {
   width: 5rem;
   height: 5rem;
-
-  background-color: #fff;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   margin: 0.5rem;
+  background-color: #fff;
+
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.O {
+  background-color: #c8f0ff;
+}
+
+.X {
+  background-color: #ffcccc;
 }

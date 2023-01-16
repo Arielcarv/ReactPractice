@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     hmr:{
-      timeout: 100,
+      timeout: 1000,
     }
   }
 })
