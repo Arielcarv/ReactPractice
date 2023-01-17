@@ -34,22 +34,43 @@ function App() {
     return register[index];
   };
 
-// TODO : Refactor GameEnd Logic -> Check lines, Columns and diagonals*
+  // TODO : Refactor GameEnd Logic -> Check lines, Columns and diagonals*
   const checkGameEnd = () => {
-    let sum_O = 0;
-    let sum_X = 0;
-    for (let index = 0; index < 9; index++) {
-      if (register[index] === "O") {
-        sum_O += index + 1;
-        if (sum_O === 15) {
-          return "O";
-        }
-      }
-      if (register[index] === "X") {
-        sum_X += index + 1;
-        if (sum_X === 15) {
-          return "X";
-        }
+    // let sum_O = 0;
+    // let sum_X = 0;
+    // for (let index = 0; index < 9; index++) {
+    //   if (register[index] === "O") {
+    //     sum_O += index + 1;
+    //     if (sum_O === 15) {
+    //       return "O";
+    //     }
+    //   }
+    //   if (register[index] === "X") {
+    //     sum_X += index + 1;
+    //     if (sum_X === 15) {
+    //       return "X";
+    //     }
+    //   }
+    // }
+    const winningPossibilities = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [0, 1, 2],
+      [2, 4, 6],
+    ];
+    for (const line of winningPossibilities) {
+      const [a, b, c] = line;
+      if (
+        register[a] &&
+        register[a] === register[b] &&
+        register[a] === register[c]
+      ) {
+        return register[a];
       }
     }
   };
@@ -71,14 +92,16 @@ function App() {
     if (winner) {
       setWinner(winner);
     }
-    checkTie()
+    checkTie();
   }, [register]);
 
   return (
     <div className="container">
       {winner && <h1>{winner} is the WINNER !!!</h1>}
       {tie && <h1>DRAW!</h1>}
-      <button onClick={resetGame}>{gameOver ? "Play Again" : "Reset Game"}</button>
+      <button onClick={resetGame}>
+        {gameOver ? "Play Again" : "Reset Game"}
+      </button>
       {!winner && <p>It's {turn}'s turn.</p>}
 
       <div className={`board ${gameOver ? "gameOver" : null}`}>
