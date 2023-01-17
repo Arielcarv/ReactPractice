@@ -82,6 +82,7 @@ function App() {
   };
 
   const resetGame = () => {
+    setTurn(() => (register[0] === "O" ? "X" : "O"));
     setRegister(() => ({}));
     setWinner(() => null);
     setTie(() => null);

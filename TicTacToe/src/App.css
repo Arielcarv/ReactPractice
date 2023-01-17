@@ -16,6 +16,10 @@
   font-size: xx-large;
 }
 
+.container > h1, button, p {
+  margin-bottom: 1.5rem;
+}
+
 .board {
   display: flex;
   width: 18rem;
