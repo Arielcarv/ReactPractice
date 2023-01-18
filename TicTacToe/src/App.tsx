@@ -102,6 +102,7 @@ function App() {
 
   return (
     <div className="container">
+      <h1 className="title">TIC TAC TOE !!!</h1>
       {winner && <h1>{winner} is the WINNER !!!</h1>}
       {tie && <h1>DRAW!</h1>}
       <button onClick={resetGame}>
