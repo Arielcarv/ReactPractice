@@ -34,44 +34,48 @@ function App() {
     return register[index];
   };
 
-  // TODO : Refactor GameEnd Logic -> Check lines, Columns and diagonals*
-  const checkGameEnd = () => {
-    // let sum_O = 0;
-    // let sum_X = 0;
-    // for (let index = 0; index < 9; index++) {
-    //   if (register[index] === "O") {
-    //     sum_O += index + 1;
-    //     if (sum_O === 15) {
-    //       return "O";
-    //     }
-    //   }
-    //   if (register[index] === "X") {
-    //     sum_X += index + 1;
-    //     if (sum_X === 15) {
-    //       return "X";
-    //     }
-    //   }
-    // }
-    const winningPossibilities = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [0, 1, 2],
-      [2, 4, 6],
-    ];
-    for (const line of winningPossibilities) {
-      const [a, b, c] = line;
+  const checkRows = () => {
+    for (let firstElement = 0; firstElement < 9; firstElement += 3) {
       if (
-        register[a] &&
-        register[a] === register[b] &&
-        register[a] === register[c]
+        register[firstElement] &&
+        register[firstElement] === register[firstElement + 1] &&
+        register[firstElement] === register[firstElement + 2]
       ) {
-        return register[a];
+        return register[firstElement];
       }
+    }
+  };
+
+  const checkColumns = () => {
+    for (let firstElement = 0; firstElement < 3; firstElement += 1) {
+      if (
+        register[firstElement] &&
+        register[firstElement] === register[firstElement + 3] &&
+        register[firstElement] === register[firstElement + 6]
+      ) {
+        return register[firstElement];
+      }
+    }
+  };
+
+  const checkDiaigonals = () => {
+    if (
+      (register[4] === register[0] && register[4] === register[8]) ||
+      (register[4] === register[2] && register[4] === register[6])
+    ) {
+      return register[4];
+    }
+  };
+
+  const checkGameEnd = () => {
+    if (checkRows()) {
+      return checkRows();
+    }
+    if (checkColumns()) {
+      return checkColumns();
+    }
+    if (register[4]) {
+      return checkDiaigonals();
     }
   };
 
